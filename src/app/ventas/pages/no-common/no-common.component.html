@@ -1,0 +1,99 @@
+<div class="text-layout">
+  <h1>Pipes menos comunes</h1>
+  <p>Pipes incluidos en Angular - Usualmente en el Common Module.</p>
+</div>
+
+
+<div class="grid">
+  <div class="col md-6">
+    <p-fieldset legend="i18n-select-pipe" [toggleable]="true">
+
+      <span class="p-float-label mt-4">
+        <input type="text" (keyup)="setName($event)" pInputText id="inputtext">
+        <label for="inputtext">Name</label>
+      </span>
+      <p-selectButton [options]="stateOptions" (click)="setGenero($event)" [(ngModel)]="value1" optionValue="value"
+        class="inline-block mt-4"></p-selectButton>
+
+      <p>genero | i18nSelect : generosMap</p>
+      <hr>
+
+      <p>Hola {{ name }}, estas {{ genero | i18nSelect : generosMap }} a la fiesta.</p>
+    </p-fieldset>
+  </div>
+  <div class="col md-6">
+    <p-fieldset legend="i18n-plural-pipe" [toggleable]="true">
+      <span class="p-float-label mt-4">
+        <input type="text" (keyup.enter)="setElements($event)" pInputText id="inputtext" #element required>
+        <label for="inputtext">Elementos</label>
+      </span>
+
+      <p>elements.length | i18nPlural : elementsMap</p>
+      <hr>
+
+      <p>Actualmente {{ elements.length | i18nPlural: elementsMap }} en el array</p>
+      <div class="text-right">
+        <button pButton type="button" label="Borrar" class="p-button-danger" (click)="removeElement()"></button>
+      </div>
+    </p-fieldset>
+  </div>
+  <div class="col md-6">
+    <p-fieldset legend="Slice Pipe" [toggleable]="true">
+
+      <p>elements | slice:0:2</p>
+      <hr>
+
+      <b>Original</b>
+      <pre>{{ elements }}</pre>
+
+      <b>slice:0:2</b>
+      <pre>{{ elements | slice:0:2 }}</pre>
+
+      <b>slice:1:2</b>
+      <pre>{{ elements | slice:1:2}}</pre>
+
+      <b>slice:1:4</b>
+      <pre>{{ elements | slice:1:4}}</pre>
+
+    </p-fieldset>
+  </div>
+
+  <div class="col md-6">
+    <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+      <p>let item of persona | keyvalue</p>
+      <hr>
+
+      <ul>
+        <li *ngFor="let item of persona | keyvalue">
+          <b> {{ item.key }}: </b> <span class="color-custom">{{ item.value }}</span>
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <div class="col md-6">
+    <p-fieldset legend="Json Pipe" [toggleable]="true">
+
+      <p>heroes | json</p>
+      <hr>
+
+      <pre>{{ heroes | json }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col md-6">
+    <p-fieldset legend="Async Pipe" [toggleable]="true">
+
+      <p>miObservable | async </p>
+      <hr>
+      <pre *ngIf="!(miObservable | async)"> Resolviendo Observable...</pre>
+      <pre>{{ miObservable | async }}</pre>
+
+      <p>miPromesa | async </p>
+      <hr>
+      <pre *ngIf="!(miPromesa | async)"> Resolviendo promesa...</pre>
+      <pre>{{ miPromesa | async }}</pre>
+
+    </p-fieldset>
+  </div>
+</div>
