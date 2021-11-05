@@ -1,20 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Color, Heroe } from '../../interfaces/ventas.interfaces';
+import { data } from './objeto'
+
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class OrderComponent {
+export class OrderComponent implements OnInit{
+  setMayusculas: boolean = true;
+  orderBy:string = '';
 
- setMayusculas : boolean = true;
+  data = data.records.alerts;
+
+  heroes: Heroe[] = [
+    {
+      nombre: 'Superman',
+      vuela: true,
+      color: Color.azul,
+    },
+    {
+      nombre: 'Batman',
+      vuela: false,
+      color: Color.negro,
+    },
+    {
+      nombre: 'Robin',
+      vuela: false,
+      color: Color.rojo,
+    },
+    {
+      nombre: 'Daredevil',
+      vuela: false,
+      color: Color.rojo,
+    },
+    {
+      nombre: 'Linterna Verde',
+      vuela: true,
+      color: Color.verde,
+    },
+  ];
 
 
- handleSetMayusculas():void{
-  this.setMayusculas = !this.setMayusculas;
- }
+  ngOnInit() {
+    console.log(data)
+  }
 
 
+  handleSetMayusculas(): void {
+    this.setMayusculas = !this.setMayusculas;
+  }
 
+
+  handleChangeOrder( value: string){
+    this.orderBy = value;
+  }
 }
